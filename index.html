@@ -1,6 +1,12 @@
-<!DOCTYPE html><html lang="ar">
+0);
+
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>هجوم الويندوز بدأ ⚠️</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -8,64 +14,80 @@
       font-family: 'Cairo', sans-serif;
       background-color: #fff;
       color: #000;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
     }
+
     .popup {
       position: absolute;
       background-color: #fff;
       border: 2px solid red;
-      padding: 20px;
+      padding: 15px;
+      max-width: 80%;
+      box-sizing: border-box;
       color: #000;
       z-index: 9999;
       font-size: 1rem;
       box-shadow: 0 0 15px red;
       font-weight: bold;
+      word-wrap: break-word;
+    }
+
+    @media (max-width: 600px) {
+      .popup {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <script>
     let counter = 0;
-    const maxPopups = 50;const messages = [
-  "⚠️ فيروس بيضحك عليك 😂",
-  "⚠️ برنامج مجهول عايز كرشاتك 😳",
-  "⚠️ تم اختراقك عاطفياً 💔",
-  "⚠️ الويندوز عنده نية شريرة 😈",
-  "⚠️ اضغط عشان تنقذ البشرية 🦸🏻‍♂️"
-];
+    const maxPopups = 50;
+    const messages = [
+      "⚠️ فيروس بيضحك عليك 😂",
+      "⚠️ برنامج مجهول عايز كرشاتك 😳",
+      "⚠️ تم اختراقك عاطفياً 💔",
+      "⚠️ الويندوز عنده نية شريرة 😈",
+      "⚠️ اضغط عشان تنقذ البشرية 🦸🏻‍♂️"
+    ];
 
-const interval = setInterval(() => {
-  if (counter >= maxPopups) return;
+    const interval = setInterval(() => {
+      if (counter >= maxPopups) return;
 
-  const popup = document.createElement('div');
-  popup.classList.add('popup');
+      const popup = document.createElement('div');
+      popup.classList.add('popup');
 
-  const msgIndex = Math.floor(Math.random() * messages.length);
-  popup.textContent = `${messages[msgIndex]} (#${++counter})`;
+      const msgIndex = Math.floor(Math.random() * messages.length);
+      popup.textContent = `${messages[msgIndex]} (#${++counter})`;
 
-  popup.style.top = Math.random() * (window.innerHeight - 100) + 'px';
-  popup.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+      const top = Math.random() * (window.innerHeight - 120);
+      const left = Math.random() * (window.innerWidth - 220);
 
-  popup.onclick = () => {
-    popup.remove();
-    if (document.querySelectorAll('.popup').length === 0 && counter >= maxPopups) {
-      const msg = document.createElement('div');
-      msg.classList.add('popup');
-      msg.style.top = '50%';
-      msg.style.left = '50%';
-      msg.style.transform = 'translate(-50%, -50%)';
-      msg.style.backgroundColor = '#000';
-      msg.style.color = '#0f0';
-      msg.style.borderColor = '#0f0';
-      msg.textContent = "انت لسه هنا ياض ؟ 😂";
-      document.body.appendChild(msg);
-      clearInterval(interval);
-    }
-  };
+      popup.style.top = `${Math.max(10, top)}px`;
+      popup.style.left = `${Math.max(10, left)}px`;
 
-  document.body.appendChild(popup);
-}, 350);
+      popup.onclick = () => {
+        popup.remove();
+        if (document.querySelectorAll('.popup').length === 0 && counter >= maxPopups) {
+          const msg = document.createElement('div');
+          msg.classList.add('popup');
+          msg.style.top = '50%';
+          msg.style.left = '50%';
+          msg.style.transform = 'translate(-50%, -50%)';
+          msg.style.backgroundColor = '#000';
+          msg.style.color = '#0f0';
+          msg.style.borderColor = '#0f0';
+          msg.textContent = "انت لسه هنا ياض ؟ 😂";
+          document.body.appendChild(msg);
+          clearInterval(interval);
+        }
+      };
 
+      document.body.appendChild(popup);
+    }, 350);
   </script>
 </body>
 </html>
